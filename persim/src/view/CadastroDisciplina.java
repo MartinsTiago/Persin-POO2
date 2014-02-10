@@ -18,7 +18,7 @@ import model.Professor;
 import javax.swing.table.DefaultTableModel;
 
 
-public abstract class CadastroDisciplina extends javax.swing.JInternalFrame {
+public class CadastroDisciplina extends javax.swing.JInternalFrame {
 
    public String dia, horaAula, livros, horas, minutos, professor, professorEmail, sala, salaProf, disciplina, disciplinaID, horarioAula,diaSemanaAula ;
     int contaLinhas = 0, contaLinhas2 = 0, linhaTabela, linhasTabela;
@@ -758,7 +758,7 @@ public abstract class CadastroDisciplina extends javax.swing.JInternalFrame {
 
 
 
-    public abstract void gravarDisciplina();
+    public void gravarDisciplina(){};
 
     // Variables declaration - do not modify
     private javax.swing.JButton addDiaHora;
