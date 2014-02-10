@@ -89,10 +89,10 @@ public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         }
         
-        if ((!this.eventoMes[dia-1].isEmpty()) && isCurrentMonth){
-            setBackground(Color.red);
-            setOpaque(true);
-        }
+//        if ((!this.eventoMes[dia-1].isEmpty()) && isCurrentMonth){
+//            setBackground(Color.red);
+//            setOpaque(true);
+//        }
 
         if (hasKeyboardFocus) {
             setBorder(BorderFactory.createDashedBorder(Color.BLACK, 6, 2));

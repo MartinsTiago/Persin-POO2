@@ -2,7 +2,7 @@ package control;
 
 import dao.ConnectionSQLiteDAO;
 import dao.DisciplinaDAO;
-import model.Disciplina;
+import model.DisciplinaAluno;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.List;
 public class DisciplinaControl {
     
     public static DisciplinaControl instance;
-    private List<Disciplina> disciplinas;
+    private List<DisciplinaAluno> disciplinas;
     
-    private DisciplinaControl (List<Disciplina> disciplinas){
+    private DisciplinaControl (List<DisciplinaAluno> disciplinas){
         this.disciplinas = disciplinas;
     }
     
@@ -25,11 +25,11 @@ public class DisciplinaControl {
         return instance;
     }
     
-    public static List<Disciplina> getDisciplinas() {
+    public static List<DisciplinaAluno> getDisciplinas() {
         return getInstance().disciplinas;
     }
     
-    public static void save (Disciplina disc){
+    public static void save (DisciplinaAluno disc){
         try {
             DisciplinaDAO dao = new DisciplinaDAO();
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
@@ -44,11 +44,11 @@ public class DisciplinaControl {
         }
     }
     
-    public static List<Disciplina> load (){
+    public static List<DisciplinaAluno> load (){
         try {
             DisciplinaDAO dao = new DisciplinaDAO();
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
-            List<Disciplina> disciplina = dao.load(conn);
+            List<DisciplinaAluno> disciplina = dao.load(conn);
             conn.closeDB();
             return disciplina;
         } catch (SQLException e) {

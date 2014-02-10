@@ -1,5 +1,5 @@
 package dao;
-import model.Disciplina;
+import model.DisciplinaAluno;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DisciplinaDAO {
     
-    public void save (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException{
+    public void save (DisciplinaAluno disc, ConnectionSQLiteDAO conn) throws SQLException{
         String query = "INSERT INTO disciplina VALUES (?, ?, ?, ?);";
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
         ps.setString(1, disc.getID());
@@ -37,7 +37,7 @@ public class DisciplinaDAO {
         ps.execute();
     }
     
-    public List<Disciplina> load (ConnectionSQLiteDAO conn) throws SQLException{
+    public List<DisciplinaAluno> load (ConnectionSQLiteDAO conn) throws SQLException{
         String query = "SELECT * FROM disciplina LEFT OUTER JOIN professor "
                             + "ON disciplina.fk_prof_nome LIKE professor.prof_nome;";
         
@@ -47,14 +47,14 @@ public class DisciplinaDAO {
         return build(rs, conn);
     }
     
-    private List<Disciplina> build (ResultSet rs, ConnectionSQLiteDAO conn) throws SQLException{
+    private List<DisciplinaAluno> build (ResultSet rs, ConnectionSQLiteDAO conn) throws SQLException{
         BibliografiaDAO bibdao = new BibliografiaDAO();
         AulaDAO auladao = new AulaDAO();
         EventoAvaliativoDAO evtdao = new EventoAvaliativoDAO();
-        List<Disciplina> ds = new ArrayList<>();
+        List<DisciplinaAluno> ds = new ArrayList<>();
         ProfessorDAO profdao = new ProfessorDAO();
         while(rs.next()){
-            Disciplina disciplina = new Disciplina();
+            DisciplinaAluno disciplina = new DisciplinaAluno();
             disciplina.setID(rs.getString("disc_id"));
             disciplina.setNome(rs.getString("disc_nome"));
             disciplina.setProfessor(profdao.build(rs));
