@@ -1,9 +1,6 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
-import model.Aula;
-import model.EventoAvaliativo;
-import model.Professor;
 
 public class DisciplinaAluno extends Disciplina {
 

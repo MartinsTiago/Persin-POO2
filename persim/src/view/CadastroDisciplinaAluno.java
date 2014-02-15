@@ -16,7 +16,7 @@ import model.Professor;
 
 /**
  *
- * @author Tacio Medeiros
+ * @author araujot
  */
 public class CadastroDisciplinaAluno extends CadastroDisciplina{
     JTextField nomeProfessor ;
@@ -90,10 +90,6 @@ public class CadastroDisciplinaAluno extends CadastroDisciplina{
         DisciplinaControl.save(ds);
         DisciplinaControl.getDisciplinas().add(ds);
     }
-
-
-
-
 
 }
 
