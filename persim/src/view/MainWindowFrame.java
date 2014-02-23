@@ -1,30 +1,18 @@
 package view;
 
 import config.Path;
-import control.DatabaseConfigControl;
 import control.StickyNotesControl;
-import view.CadastroDisciplina;
-import view.CadastroEventoIFrame;
-import view.CadastroStickyNotesIFrame;
-import view.CalendarIFrame;
-import view.StickyNotesIFrame;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.Iterator;
 import java.util.List;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 //import javax.swing.JOptionPane;
 
 public class MainWindowFrame extends javax.swing.JFrame {
 
-//    public MainWindowFrame() {
-//        setMainWindowConfigurations();
-//        setDesktopConfigurations();
-//        //Notifications.showMessage("Testando!", "Testando 123 Hello World!!", Notifications.ATENTION_ICON);
-//    }
+    public MainWindowFrame() {
+        setMainWindowConfigurations();
+        setDesktopConfigurations();
+    }
 
     public void setMainWindowConfigurations () {
         this.initComponents();

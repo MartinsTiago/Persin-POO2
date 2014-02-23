@@ -24,7 +24,7 @@ public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
     
     private ArrayList<Evento>[] eventoMes;   //Array de listas (mais de um evento por dia)
     private int mesCorrente;
-    private JTextArea textArea;
+    private final JTextArea textArea;
     private int lengthEventosTotal;
     
     public CalendarRenderer (JTextArea text) {
@@ -121,14 +121,14 @@ public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
             this.eventoMes[i] = new ArrayList<>();
         }
         List<Evento> eventos = EventoControl.getEventos();
-        for (Iterator<Evento> it = eventos.iterator(); it.hasNext();) {
-            Evento evento = it.next();
+        for (Evento evento : eventos) {
             String[] time = evento.getDataHora().toString().split("[^0-9]");
             
             int mes = Integer.parseInt(time[1]);
             if (mes == this.mesCorrente)
             {
-                int day = Integer.parseInt(time[2]);
+                int day;
+                day = Integer.parseInt(time[2]);
                 this.eventoMes[day-1].add(evento);
             }
         }

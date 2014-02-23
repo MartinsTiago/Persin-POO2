@@ -4,15 +4,13 @@ import control.StickyNotesControl;
 import model.StickyNote;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JTextArea;
 
 public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
 
-   private List<StickyNotesIFrame> list;
+   private final List<StickyNotesIFrame> list;
    
     public CadastroStickyNotesIFrame(List<StickyNotesIFrame> snotes) {
         super("Add Sticky Note");
@@ -26,19 +24,6 @@ public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
         this.lembreteJText.setBackground(new Color(255,255,200));
         
         this.lembreteJText.addKeyListener(new LimitDigitsListener(120, this.lembreteJText));
-        /*this.lembreteJText.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (getTextArea().getText().length() > 120){
-                    String text = getTextArea().getText();
-                    getTextArea().setText(text.substring(0, 120));
-                }
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {}
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });*/
        
     }
     
@@ -58,6 +43,7 @@ public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
 
         addButton.setText("Adicionar");
         addButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addStickyToParentDesktopPane();
             }
@@ -126,15 +112,10 @@ public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
         this.dispose();
     }
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea lembreteJText;
-    // End of variables declaration//GEN-END:variables
+
 }

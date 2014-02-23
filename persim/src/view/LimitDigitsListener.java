@@ -10,7 +10,7 @@ import javax.swing.text.JTextComponent;
 public class LimitDigitsListener implements KeyListener{
 
     private int maximumDigits;
-    private JTextComponent textComponent;
+    private final JTextComponent textComponent;
      
     public LimitDigitsListener(int maximumDigits, JTextComponent textComponent){
         this.maximumDigits = maximumDigits;

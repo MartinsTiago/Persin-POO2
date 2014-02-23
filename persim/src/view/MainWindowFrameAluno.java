@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
 public final class MainWindowFrameAluno extends MainWindowFrame {
     
     public MainWindowFrameAluno() {
-        setMainWindowConfigurations();
-        setDesktopConfigurations();
+        super();
     }
 
     
