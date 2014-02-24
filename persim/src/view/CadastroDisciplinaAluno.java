@@ -10,7 +10,6 @@ import control.DisciplinaControl;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Aula;
-import model.Disciplina;
 import model.DisciplinaAluno;
 import model.Professor;
 

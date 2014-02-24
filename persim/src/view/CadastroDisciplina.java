@@ -71,8 +71,7 @@ public class CadastroDisciplina extends javax.swing.JInternalFrame {
         jLabel2.setText("Nome Disciplina:");
 
         tabBibliografia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null}
+            new Object [][] {                
             },
             new String [] {
                 "Bibliografia"
@@ -140,7 +139,6 @@ public class CadastroDisciplina extends javax.swing.JInternalFrame {
 
         tabelaDiaAula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
             },
             new String [] {
                 "Disciplina", "Dia", "Hora/Aula"
@@ -384,6 +382,7 @@ public class CadastroDisciplina extends javax.swing.JInternalFrame {
 
     public void removerDaTabela(int linha){
         DefaultTableModel modelo = (DefaultTableModel) tabelaDiaAula.getModel();
+        System.out.println(modelo);
         modelo.removeRow(linha);
         contaLinhas--;
     }

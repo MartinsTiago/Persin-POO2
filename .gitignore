@@ -1,2 +1,3 @@
 /persim/build/
 *.db
+/persim/dist/
