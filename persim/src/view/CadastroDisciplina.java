@@ -133,6 +133,7 @@ public class CadastroDisciplina extends javax.swing.JInternalFrame {
         addDiaHora.setText("Adicionar Dia/HoraAula");
         addDiaHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addDiaHora.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDiaHoraActionPerformed(evt);
             }
@@ -150,6 +151,7 @@ public class CadastroDisciplina extends javax.swing.JInternalFrame {
                 false, false, false
             };
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }

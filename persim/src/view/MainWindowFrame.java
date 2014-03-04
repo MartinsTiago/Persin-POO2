@@ -7,7 +7,11 @@ import java.awt.Toolkit;
 import java.util.List;
 //import javax.swing.JOptionPane;
 
-public class MainWindowFrame extends javax.swing.JFrame {
+/**
+ *
+ * @author araujot
+ */
+public abstract class MainWindowFrame extends javax.swing.JFrame {
 
     public MainWindowFrame() {
         setMainWindowConfigurations();

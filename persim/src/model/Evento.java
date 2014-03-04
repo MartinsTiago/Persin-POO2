@@ -2,20 +2,12 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Evento {
-    
-    private Timestamp dataHora;
-    private Timestamp duracao;
-    private String descricao;
-        
-    public Evento () {}
-    
-    public Evento (Timestamp dataHora, Timestamp duracao, String descricao) {
-        this.dataHora = dataHora;
-        this.duracao = duracao;
-        this.descricao = descricao;
-    }
-    
+public abstract class Evento {
+
+    public Timestamp dataHora;
+    public Timestamp duracao;
+    public String descricao;
+
     public Timestamp getDataHora() {
         return dataHora;
     }
@@ -39,13 +31,13 @@ public class Evento {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     @Override
     public String toString(){
         String str = "";
-        
+
         if (this.getDataHora() != null){
-            String[] d = this.getDataHora().toString().split("[^0-9]");        
+            String[] d = this.getDataHora().toString().split("[^0-9]");
             str = "Marcado para as: "+d[3]+" horas e "+d[4]+" minutos.\n";
         }
         if (this.getDuracao() != null){
@@ -55,7 +47,7 @@ public class Evento {
         if (this.getDescricao() != null){
             str += "Sobre: "+this.getDescricao();
         }
-        
+
         return str;
     }
 }
