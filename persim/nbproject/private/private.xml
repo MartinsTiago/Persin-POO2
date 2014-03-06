@@ -3,24 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CadastroDisciplinaAluno.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/Notifications.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/StickyNotesIFrame.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CadastroDisciplina.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CalendarIFrame.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CadastroEventoIFrame.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CadastroStickyNotesIFrame.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/MainWindowFrame.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/CalendarRenderer.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/LimitDigitsListener.java</file>
-            <file>file:/Users/araujot/Persin-POO2/persim/src/view/MainWindowFrameAluno.java</file>
-=======
             <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/control/DisciplinaControl.java</file>
-            <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/view/CadastroDisciplina.java</file>
-            <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/view/CadastroDisciplinaAluno.java</file>
-            <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/dao/DisciplinaDAO.java</file>
->>>>>>> Arquivos fudencios
+            <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/control/DatabaseConfigControl.java</file>
+            <file>file:/C:/Users/Nielsen/Documents/GitHub/Persin-POO2/persim/src/dao/AulaDAO.java</file>
         </group>
     </open-files>
 </project-private>

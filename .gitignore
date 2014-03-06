@@ -1,3 +1,6 @@
 /persim/build/
 *.db
 /persim/dist/
+/PersimFramework/nbproject/private/
+/PersimFramework/build/
+/PersimFramework/dist/

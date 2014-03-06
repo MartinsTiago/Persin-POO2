@@ -29,7 +29,7 @@ public class DisciplinaControl {
         return getInstance().disciplinas;
     }
     
-    public static void save (DisciplinaAluno disc){
+    public static void save (DisciplinaAluno disc) throws Exception{
         try {
             DisciplinaDAO dao = new DisciplinaDAO();
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();

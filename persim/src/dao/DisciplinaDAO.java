@@ -1,4 +1,5 @@
 package dao;
+import java.io.FileNotFoundException;
 import model.DisciplinaAluno;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class DisciplinaDAO {
     
-    public void save (DisciplinaAluno disc, ConnectionSQLiteDAO conn) throws SQLException{
+    public void save (DisciplinaAluno disc, ConnectionSQLiteDAO conn) throws SQLException, FileNotFoundException, Exception{
         String query = "INSERT INTO disciplina VALUES (?, ?, ?, ?);";
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
         ps.setString(1, disc.getID());

@@ -7,6 +7,8 @@
 package view;
 
 import control.DisciplinaControl;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Aula;
@@ -85,8 +87,11 @@ public class CadastroDisciplinaAluno extends CadastroDisciplina{
             ds.getBibliografia().add(livros);
             linhasTabela--;
         }
-
-        DisciplinaControl.save(ds);
+        try {
+            DisciplinaControl.save(ds);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroDisciplinaAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DisciplinaControl.getDisciplinas().add(ds);
     }
 

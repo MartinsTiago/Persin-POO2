@@ -1,36 +1,45 @@
 package dao;
 
+import java.io.FileNotFoundException;
 import model.Aula;
 import model.Disciplina;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import model.ExemploObject;
 
 public class AulaDAO {
    
-    public void save (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
+    public void save (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException, ClassNotFoundException, FileNotFoundException, Exception {
         if (disc.getAulas() != null){
-            for (Iterator it = disc.getAulas().iterator(); it.hasNext();) {
-                Aula aula = (Aula) it.next();
-                String query = "INSERT INTO aula (fk_disc_id, aula_horario, aula_diasemana) VALUES (?,?,?);";
-                PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-                ps.setString(1, disc.getID());
-                ps.setString(2, aula.getHorario());
-                ps.setString(3, aula.getDiaSemana());
-                ps.execute();
+            for (Aula aula : disc.getAulas()) {
+                GenericDAO dao = new GenericDAO();
+                
+                ArrayList<String> cols = new ArrayList<>();
+                cols.add("fk_disc_id");
+                cols.add("aula_horario");
+                cols.add("aula_diasemana");
+                
+                ArrayList<String> values = new ArrayList<>();
+                values.add(disc.getID());
+                values.add(aula.getHorario());
+                values.add(aula.getDiaSemana());
+                
+                //chama metodo que faz a inserção do framework
+                dao.insert("aula", cols, values, conn);
             }
         }
     }
     
     public List<Aula> load (String idDisc, ConnectionSQLiteDAO conn) throws SQLException {
         
-        String query = "SELECT * FROM aula WHERE fk_disc_id = ?";
-        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-        ps.setString(1, idDisc);
-        ResultSet rs = ps.executeQuery();
+        GenericDAO dao = new GenericDAO();
+        ArrayList<ExemploObject> exemplo = new ArrayList<>();
+        ExemploObject exemploObj = new ExemploObject("fk_disc_id","=",idDisc);
+        exemplo.add(exemploObj);
+        
+        ResultSet rs = dao.selectByExample("aula", "*", exemplo, conn);        
         return build(rs);
     }
     
