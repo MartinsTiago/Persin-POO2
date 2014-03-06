@@ -7,9 +7,9 @@ package config;
 public class Path {
     
     private static Path instance;
-    private String imagePath;
-    private String audioPath;
-    private String databasePath;
+    private final String imagePath;
+    private final String audioPath;
+    private final String databasePath;
     
     private Path() {
         String udir = System.getProperty("user.dir");       //diretorio da app.

@@ -4,8 +4,6 @@
  */
 package view;
 
-import control.DisciplinaControl;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -14,7 +12,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Aula;
-import model.Professor;
 import javax.swing.table.DefaultTableModel;
 
 

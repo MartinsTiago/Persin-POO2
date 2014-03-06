@@ -4,7 +4,7 @@ import dao.ConnectionSQLiteDAO;
 import dao.EventoAvaliativoDAO;
 import dao.EventoDAO;
 import model.Disciplina;
-import model.EventoAluno;
+import model.Evento;
 import model.EventoAvaliativoAluno;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -15,9 +15,9 @@ import java.util.List;
 public class EventoControl {
     
     private static EventoControl instance;
-    private final List<EventoAluno> eventosDoMes;
+    private final List<Evento> eventosDoMes;
     
-    private EventoControl(List<EventoAluno> eventos) {
+    private EventoControl(List<Evento> eventos) {
         this.eventosDoMes = eventos;
     }
     
@@ -28,11 +28,11 @@ public class EventoControl {
         return instance;
     }
     
-    public static List<EventoAluno> getEventos(){
+    public static List<Evento> getEventos(){
         return getInstance().eventosDoMes;
     }
     
-    public static void save (EventoAluno evento){
+    public static void save (Evento evento){
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoDAO dao = new EventoDAO();
@@ -64,12 +64,12 @@ public class EventoControl {
         }
     }
     
-    private static List<EventoAluno> load () {
+    private static List<Evento> load () {
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoDAO dao = new EventoDAO();
             EventoAvaliativoDAO dao2 = new EventoAvaliativoDAO();
-            List<EventoAluno> lista = dao.load(conn);
+            List<Evento> lista = dao.load(conn);
             List<EventoAvaliativoAluno> lista2 = dao2.load(conn);
             lista.addAll(lista2);
             conn.closeDB();

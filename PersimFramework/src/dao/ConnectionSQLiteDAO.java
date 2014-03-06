@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class ConnectionSQLiteDAO {
     
-    private Connection conn;
+    private final Connection conn;
     
     public ConnectionSQLiteDAO () throws ClassNotFoundException, SQLException, FileNotFoundException {
         

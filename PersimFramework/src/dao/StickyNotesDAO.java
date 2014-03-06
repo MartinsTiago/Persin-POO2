@@ -1,9 +1,6 @@
 package dao;
 
-import dao.ConnectionSQLiteDAO;
-import dao.GenericDAO;
 import model.StickyNote;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
