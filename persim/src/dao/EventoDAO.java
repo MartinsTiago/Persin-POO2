@@ -1,7 +1,6 @@
 package dao;
 
 import model.Evento;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,23 +8,30 @@ import java.util.List;
 
 public class EventoDAO {
     
-    public void save (Evento evento, ConnectionSQLiteDAO conn) throws SQLException{
-        String query = "INSERT INTO evento "
-                + "(event_datahora, event_duracao, event_descricao)"
-                + "VALUES(?, ?, ?);";
+    private final GenericDAO dao;
+    
+    public EventoDAO(){
+        dao = new GenericDAO();
+    }
+    
+    public void save (Evento evento, ConnectionSQLiteDAO conn) throws SQLException, Exception{
         
-        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-        ps.setTimestamp(1, evento.getDataHora());
-        ps.setTimestamp(2, evento.getDuracao());
-        ps.setString(3, evento.getDescricao());
-        ps.execute();        
+        ArrayList<String> cols = new ArrayList<>();
+        cols.add("event_datahora");
+        cols.add("event_duracao");
+        cols.add("event_descricao");
+        
+        ArrayList<String> values = new ArrayList<>();
+        values.add(String.valueOf(evento.getDataHora()));
+        values.add(String.valueOf(evento.getDuracao()));
+        values.add(evento.getDescricao());
+        
+        dao.insert("evento", cols, values, conn);
     }
     
     public List<Evento> load (ConnectionSQLiteDAO conn) throws SQLException {
-        String query = "SELECT * FROM evento;";
-        
-        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
+
+        ResultSet rs = dao.selectAll("evento", conn);
         
         return build(rs);
     }
@@ -36,8 +42,9 @@ public class EventoDAO {
             eventos.add(new Evento(rs.getTimestamp("event_datahora"),
                     rs.getTimestamp("event_duracao"),
                     rs.getString("event_descricao")
-            ));
+            ) {});
         }
         return eventos;
+        
     }
 }

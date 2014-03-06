@@ -32,7 +32,7 @@ public class EventoControl {
         return getInstance().eventosDoMes;
     }
     
-    public static void save (Evento evento){
+    public static void save (Evento evento) throws Exception{
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoDAO dao = new EventoDAO();

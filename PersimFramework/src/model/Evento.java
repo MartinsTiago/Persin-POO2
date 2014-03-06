@@ -7,6 +7,14 @@ public abstract class Evento {
     public Timestamp dataHora;
     public Timestamp duracao;
     public String descricao;
+    
+    public Evento () {}
+
+    public Evento (Timestamp dataHora, Timestamp duracao, String descricao) {
+        this.dataHora = dataHora;
+        this.duracao = duracao;
+        this.descricao = descricao;
+    }
 
     public Timestamp getDataHora() {
         return dataHora;

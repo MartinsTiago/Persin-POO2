@@ -1,7 +1,6 @@
 package dao;
 
 import model.Disciplina;
-import model.Evento;
 import model.EventoAvaliativoAluno;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

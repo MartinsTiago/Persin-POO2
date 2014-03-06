@@ -4,11 +4,12 @@ import java.sql.Timestamp;
 
 public class EventoAluno extends Evento {
 
-    public EventoAluno () {}
+    public EventoAluno () {
+        super();
+    }
 
     public EventoAluno (Timestamp dataHora, Timestamp duracao, String descricao) {
-        this.dataHora = dataHora;
-        this.duracao = duracao;
-        this.descricao = descricao;
+        super(dataHora, duracao, descricao);
     }
+
 }
