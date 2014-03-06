@@ -1,34 +1,44 @@
 package dao;
 
 import model.Disciplina;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import model.ExemploObject;
+
 
 public class BibliografiaDAO {
     
-    public void save (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
+    public void save (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException, Exception {
         if (disc.getBibliografia() != null){
-            for (Iterator it = disc.getBibliografia().iterator(); it.hasNext();) {
-                String bibliografia = (String) it.next();
-                String query = "INSERT INTO bibliografia (fk_disc_id, bib_texto) VALUES (?,?);";
-                PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-                ps.setString(1, disc.getID());
-                ps.setString(2, bibliografia);
-                ps.execute();
+            for (String bibliografia : disc.getBibliografia()) {
+                GenericDAO dao = new GenericDAO();                
+                ArrayList<String> cols = new ArrayList<>();
+                cols.add("fk_disc_id");
+                cols.add("bib_texto");
+                
+                ArrayList<String> values = new ArrayList<>();
+                values.add(disc.getID());
+                values.add(bibliografia);
+                
+                dao.insert("bibliografia", cols, values, conn);
             }
         }
     }
     
     public List<String> load (String idDisc, ConnectionSQLiteDAO conn) throws SQLException {
         
-        String query = "SELECT bib_texto FROM bibliografia WHERE fk_disc_id = ?";
-        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-        ps.setString(1, idDisc);
-        ResultSet rs = ps.executeQuery();
+        GenericDAO dao = new GenericDAO();
+        
+        ArrayList<String> cols = new ArrayList<>();
+        cols.add("bib_texto");
+        ExemploObject exemplo = new ExemploObject("fk_disc_id", "=", idDisc);
+        ArrayList<ExemploObject> exemplos = new ArrayList<>();
+        exemplos.add(exemplo);
+        
+        ResultSet rs = dao.selectByExample("bibliografia", cols, exemplos, conn);
+        
         return build(rs);
     }
     

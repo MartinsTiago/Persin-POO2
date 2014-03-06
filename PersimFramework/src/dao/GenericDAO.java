@@ -74,6 +74,8 @@ public class GenericDAO {
             ps.setString(i, values.get(i-1));
         }
         
+        System.out.println(query);
+        
         return ps.execute();
         
     }
@@ -103,11 +105,11 @@ public class GenericDAO {
         query += " FROM " + tableName + " WHERE 1 = 1";
         
         for (int i = 0; i < example.size(); i++) {
-            query += " AND " + example.get(i).getColumnName() + example.get(i).getOperator() + example.get(i).getColumnValue();
+            query += " AND " + example.get(i).getColumnName() + example.get(i).getOperator() + "'" + example.get(i).getColumnValue() + "'";
         }
         
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
-        
+        System.out.println(query);
         ResultSet rs = ps.executeQuery();
         
         return rs;
@@ -133,9 +135,11 @@ public class GenericDAO {
             query += " AND " + example.get(i).getColumnName() + example.get(i).getOperator() + "'" + example.get(i).getColumnValue() + "'";
         }
         
-        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
         
+        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        System.out.println(query);
         ResultSet rs = ps.executeQuery();
+        
         
         return rs;
     }
