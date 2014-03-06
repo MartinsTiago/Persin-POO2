@@ -1,7 +1,7 @@
 package view;
 
 import control.EventoControl;
-import model.Evento;
+import model.EventoAluno;
 import com.javaswingcomponents.calendar.JSCCalendar;
 import com.javaswingcomponents.calendar.cellrenderers.CalendarCellRenderer;
 import com.javaswingcomponents.calendar.cellrenderers.CellRendererComponentParameter;
@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
     
-    private ArrayList<Evento>[] eventoMes;   //Array de listas (mais de um evento por dia)
+    private ArrayList<EventoAluno>[] eventoMes;   //Array de listas (mais de um evento por dia)
     private int mesCorrente;
     private final JTextArea textArea;
     private int lengthEventosTotal;
@@ -115,13 +115,13 @@ public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
     
     private void updateEventosDoMes () {
         
-        this.eventoMes = (ArrayList<Evento>[]) new ArrayList[31];
+        this.eventoMes = (ArrayList<EventoAluno>[]) new ArrayList[31];
         
         for (int i = 0; i < 31; i++){
             this.eventoMes[i] = new ArrayList<>();
         }
-        List<Evento> eventos = EventoControl.getEventos();
-        for (Evento evento : eventos) {
+        List<EventoAluno> eventos = EventoControl.getEventos();
+        for (EventoAluno evento : eventos) {
             String[] time = evento.getDataHora().toString().split("[^0-9]");
             
             int mes = Integer.parseInt(time[1]);
@@ -139,7 +139,7 @@ public class CalendarRenderer extends JLabel implements CalendarCellRenderer {
         int i = 0;
         for (Iterator it = this.eventoMes[day-1].iterator(); it.hasNext();) {
             i++;
-            Evento evento = (Evento) it.next();
+            EventoAluno evento = (EventoAluno) it.next();
             str += "--------------EVENTO "+i+"--------------\n";
             str += evento.toString() + "\n\n";
         }

@@ -10,16 +10,16 @@ import java.util.List;
 
 /**
  *
- * @author Tacio Medeiros
+ * @author araujot
  */
 public abstract class Disciplina {
-    private String ID;
-    private String nome;
-    private Professor professor;
-    private List<String> bibliografia;
-    private List<EventoAvaliativo> eventos;
-    private List<Aula> aulas;
-    private String sala;
+    public String ID;
+    public String nome;
+    public Professor professor;
+    public List<String> bibliografia;
+    public List<EventoAvaliativoAluno> eventos;
+    public List<Aula> aulas;
+    public String sala;
 
     public String getID() {
         return ID;
@@ -63,11 +63,11 @@ public abstract class Disciplina {
         return professor;
     }
 
-    public void setEventos(List<EventoAvaliativo> eventos) {
+    public void setEventos(List<EventoAvaliativoAluno> eventos) {
         this.eventos = eventos;
     }
 
-    public List<EventoAvaliativo> getEventos() {
+    public List<EventoAvaliativoAluno> getEventos() {
         return eventos;
     }
 

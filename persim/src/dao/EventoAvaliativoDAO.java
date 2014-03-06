@@ -2,7 +2,7 @@ package dao;
 
 import model.Disciplina;
 import model.Evento;
-import model.EventoAvaliativo;
+import model.EventoAvaliativoAluno;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EventoAvaliativoDAO {
 
-    public void save(EventoAvaliativo evento, Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
+    public void save(EventoAvaliativoAluno evento, Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
         String query = "INSERT INTO evento_avaliativo "
                 + "(event_datahora, event_duracao, event_descricao, event_aval_tipo, "
                 + "event_aval_pontuacao, fk_disc_id)"
@@ -27,7 +27,7 @@ public class EventoAvaliativoDAO {
         ps.execute();
     }
     
-    public List<EventoAvaliativo> load (ConnectionSQLiteDAO conn) throws SQLException {
+    public List<EventoAvaliativoAluno> load (ConnectionSQLiteDAO conn) throws SQLException {
         String query = "SELECT * FROM evento_avaliativo;";
         
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
@@ -36,7 +36,7 @@ public class EventoAvaliativoDAO {
         return build(rs);
     }
     
-    public List<EventoAvaliativo> load (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
+    public List<EventoAvaliativoAluno> load (Disciplina disc, ConnectionSQLiteDAO conn) throws SQLException {
         String query = "SELECT * FROM evento_avaliativo WHERE fk_disc_id LIKE ?;";
         
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
@@ -46,10 +46,10 @@ public class EventoAvaliativoDAO {
         return build(rs);
     }
     
-    private List<EventoAvaliativo> build (ResultSet rs) throws SQLException{
-        List<EventoAvaliativo> eventos = new ArrayList<>();
+    private List<EventoAvaliativoAluno> build (ResultSet rs) throws SQLException{
+        List<EventoAvaliativoAluno> eventos = new ArrayList<>();
         while(rs.next()){
-            EventoAvaliativo evento = new EventoAvaliativo();
+            EventoAvaliativoAluno evento = new EventoAvaliativoAluno();
             evento.setDataHora(rs.getTimestamp("event_datahora"));
             evento.setDuracao(rs.getTimestamp("event_duracao"));
             evento.setDescricao(rs.getString("event_descricao"));

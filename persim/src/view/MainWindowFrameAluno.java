@@ -122,7 +122,7 @@ public final class MainWindowFrameAluno extends MainWindowFrame {
     }
     
     private void eventoMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        this.eventFrame = new CadastroEventoIFrame();//instancia a classe iFrmCliente
+        this.eventFrame = new CadastroEventoIFrameAluno();//instancia a classe iFrmCliente
         desktopPane.add(this.eventFrame);//adiciona o cliente no seu JdesktopPane
         this.eventFrame.setLocation(400, 0);//colocar a tela iFrmCliente na posiÃ§Ã£o(0,0)
         this.eventFrame.setVisible(true);//deixa visÃ­vel

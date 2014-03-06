@@ -12,7 +12,7 @@ import java.util.List;
 public class DisciplinaControl {
     
     public static DisciplinaControl instance;
-    private List<DisciplinaAluno> disciplinas;
+    private final List<DisciplinaAluno> disciplinas;
     
     private DisciplinaControl (List<DisciplinaAluno> disciplinas){
         this.disciplinas = disciplinas;

@@ -2,17 +2,17 @@ package model;
 
 import java.sql.Timestamp;
 
-public class EventoAvaliativo extends Evento{
+public class EventoAvaliativoAluno extends EventoAluno{
     
     private String tipo;
     private Float pontuacao;
     
-    public EventoAvaliativo(){
+    public EventoAvaliativoAluno(){
         super();
         this.pontuacao = 0.0f;
     }
     
-    public EventoAvaliativo (Timestamp dataHora, Timestamp duracao, 
+    public EventoAvaliativoAluno (Timestamp dataHora, Timestamp duracao, 
             String descricao, String tipo, Float pontuacao) {
         super(dataHora, duracao, descricao);
         this.tipo = tipo;

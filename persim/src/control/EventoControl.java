@@ -4,8 +4,8 @@ import dao.ConnectionSQLiteDAO;
 import dao.EventoAvaliativoDAO;
 import dao.EventoDAO;
 import model.Disciplina;
-import model.Evento;
-import model.EventoAvaliativo;
+import model.EventoAluno;
+import model.EventoAvaliativoAluno;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ import java.util.List;
 public class EventoControl {
     
     private static EventoControl instance;
-    private List<Evento> eventosDoMes;
+    private final List<EventoAluno> eventosDoMes;
     
-    private EventoControl(List<Evento> eventos) {
+    private EventoControl(List<EventoAluno> eventos) {
         this.eventosDoMes = eventos;
     }
     
@@ -28,11 +28,11 @@ public class EventoControl {
         return instance;
     }
     
-    public static List<Evento> getEventos(){
+    public static List<EventoAluno> getEventos(){
         return getInstance().eventosDoMes;
     }
     
-    public static void save (Evento evento){
+    public static void save (EventoAluno evento){
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoDAO dao = new EventoDAO();
@@ -48,7 +48,7 @@ public class EventoControl {
         }
     }
     
-    public static void save (EventoAvaliativo evento, Disciplina disc){
+    public static void save (EventoAvaliativoAluno evento, Disciplina disc){
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoAvaliativoDAO dao = new EventoAvaliativoDAO();
@@ -64,13 +64,13 @@ public class EventoControl {
         }
     }
     
-    private static List<Evento> load () {
+    private static List<EventoAluno> load () {
         try {
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
             EventoDAO dao = new EventoDAO();
             EventoAvaliativoDAO dao2 = new EventoAvaliativoDAO();
-            List<Evento> lista = dao.load(conn);
-            List<EventoAvaliativo> lista2 = dao2.load(conn);
+            List<EventoAluno> lista = dao.load(conn);
+            List<EventoAvaliativoAluno> lista2 = dao2.load(conn);
             lista.addAll(lista2);
             conn.closeDB();
             return lista;
