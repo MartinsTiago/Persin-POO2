@@ -6,7 +6,6 @@
 
 package dao;
 
-import java.rmi.server.ObjID;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,7 +72,7 @@ public class GenericDAO {
         for (int i = 1; i <= values.size(); i++) {
             ps.setString(i, values.get(i-1));
         }
-        
+        System.out.println("-- INSERT --");
         System.out.println(query);
         
         return ps.execute();
@@ -109,6 +108,7 @@ public class GenericDAO {
         }
         
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        System.out.println("--SELECT BY EXEMPLE--");
         System.out.println(query);
         ResultSet rs = ps.executeQuery();
         
@@ -137,11 +137,115 @@ public class GenericDAO {
         
         
         PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        System.out.println("--SELECT BY EXEMPLE--");
         System.out.println(query);
         ResultSet rs = ps.executeQuery();
         
         
         return rs;
+    }
+    
+    /**
+     * Busca todos registros de uma tabela selecionada
+     * 
+     * @param tableName tabela a ser buscada
+     * @param conn conexão
+     * @return resultSet com resultado da busca
+     * @throws SQLException 
+     */
+    public ResultSet selectAll(String tableName, ConnectionSQLiteDAO conn) throws SQLException {
+        
+        String query = "SELECT * FROM " + tableName;
+        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        
+        System.out.println("--SELECT ALL--");
+        System.out.println(query);
+        
+        ResultSet rs = ps.executeQuery();        
+        
+        return rs;        
+    }
+    
+    /**
+     * Deleta um registro da tabela passada por parametro de acordo com o exemplo informado
+     * 
+     * @param tableName tabela que registro será removido
+     * @param example Arraylist de exemplos
+     * @param conn conexão
+     * @return boolean informando sucesso ou falha da operação
+     * @throws SQLException 
+     */
+    public boolean deleteByExample(String tableName, ArrayList<ExemploObject> example, ConnectionSQLiteDAO conn) throws SQLException {
+    
+        String query = "DELETE FROM " + tableName;
+        
+        if (example.size() > 0) {
+            query += " WHERE "; 
+        }
+        
+        for (int i = 0; i < example.size(); i++) {
+            if (i == example.size() - 1) {
+                query += example.get(i).getColumnName() + example.get(i).getOperator() + "'" + example.get(i).getColumnValue() + "'";
+            } else {
+                query += example.get(i).getColumnName() + example.get(i).getOperator() + "'" + example.get(i).getColumnValue() + "' AND ";
+
+            }
+        }
+        
+        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        
+        System.out.println("--DELETE BY EXAMPLE--");
+        System.out.println(query);
+        
+        return ps.execute();
+    }
+    
+    /**
+     * Atualiza registro de uma tabela de acordo com exemplo fornecido
+     * 
+     * @param tableName nome da tabela
+     * @param attValues valores que serão modificados
+     * @param exemplos valores que farão parte da clausula where
+     * @param conn conexão
+     * @return boolean com resultado da operação
+     * @throws SQLException 
+     */
+    public boolean updateByExample(String tableName, ArrayList<ExemploObject> attValues, ArrayList<ExemploObject> exemplos, ConnectionSQLiteDAO conn) throws SQLException {
+        
+        String query = "UPDATE " + tableName + " SET ";
+        
+        if (attValues.isEmpty()) {
+            return false;
+        }
+        
+        for (int i = 0; i < attValues.size(); i++) {
+            if (i == attValues.size() - 1) {
+                query += attValues.get(i).getColumnName() + " = " + attValues.get(i).getColumnValue();
+            } else {
+                query += attValues.get(i).getColumnName() + " = " + attValues.get(i).getColumnValue() + ",";
+            }
+        }
+        
+        query += " WHERE 1=1 ";
+        
+        if (!exemplos.isEmpty()) {
+            query += " AND ";
+        } 
+        
+        for (int i = 0; i < exemplos.size(); i++) {
+            if (i == exemplos.size() - 1) {
+                query += exemplos.get(i).getColumnName() + exemplos.get(i).getOperator() + attValues.get(i).getColumnValue();
+            } else {
+                query += exemplos.get(i).getColumnName() + exemplos.get(i).getOperator() + attValues.get(i).getColumnValue() + " AND ";
+            }            
+        }
+        
+        System.out.println("--UPDATE BY EXAMPLE--");
+        System.out.println(query);
+        
+        PreparedStatement ps = conn.getDBConnection().prepareStatement(query);
+        
+        return ps.execute();    
     }
     
     

@@ -7,12 +7,11 @@ import view.StickyNotesIFrame;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class StickyNotesControl {
     
-    public static void save (StickyNote snotes) {
+    public static void save (StickyNote snotes) throws Exception {
         try {
             StickyNotesDAO dao = new StickyNotesDAO();
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
@@ -63,7 +62,7 @@ public class StickyNotesControl {
         try {
             StickyNotesDAO dao = new StickyNotesDAO();
             ConnectionSQLiteDAO conn = new ConnectionSQLiteDAO();
-            dao.updatePostion(snote, conn);
+            dao.updatePosition(snote, conn);
             conn.closeDB();
         } catch (ClassNotFoundException ex) {
             System.err.println("Nao foi possivel encontrar plugin do banco de dados"+ex.getMessage());
@@ -77,9 +76,7 @@ public class StickyNotesControl {
     public static List<StickyNotesIFrame> buildStickyNotesIFrames(){
         List<StickyNote> snotes = load();
         List<StickyNotesIFrame> stks = new ArrayList<>();
-        
-        for (Iterator<StickyNote> it = snotes.iterator(); it.hasNext();) {
-            StickyNote snote = it.next();
+        for (StickyNote snote : snotes) {
             stks.add(new StickyNotesIFrame(snote));
         }
         

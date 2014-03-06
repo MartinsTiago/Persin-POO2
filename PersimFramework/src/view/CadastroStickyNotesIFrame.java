@@ -5,6 +5,8 @@ import model.StickyNote;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JTextArea;
 
@@ -45,7 +47,11 @@ public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
         addButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addStickyToParentDesktopPane();
+                try {
+                    addStickyToParentDesktopPane();
+                } catch (Exception ex) {
+                    Logger.getLogger(CadastroStickyNotesIFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -99,7 +105,7 @@ public class CadastroStickyNotesIFrame extends javax.swing.JInternalFrame {
     private JTextArea getTextArea(){
         return this.lembreteJText;
     }
-    private void addStickyToParentDesktopPane(){
+    private void addStickyToParentDesktopPane() throws Exception{
         StickyNote stk = new StickyNote(this.lembreteJText.getText(), 400, 0);
         StickyNotesIFrame sticky = new StickyNotesIFrame(stk);
         ((JDesktopPane) this.getParent()).add(sticky);
