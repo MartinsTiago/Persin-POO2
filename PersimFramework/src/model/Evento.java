@@ -2,34 +2,35 @@ package model;
 
 import java.sql.Timestamp;
 
-public abstract class Evento {
-
-    public Timestamp dataHora;
-    public Timestamp duracao;
-    public String descricao;
+public class Evento {
     
+    private int eventoID;
+    private Timestamp data;
+    private String descricao;
+        
     public Evento () {}
-
-    public Evento (Timestamp dataHora, Timestamp duracao, String descricao) {
-        this.dataHora = dataHora;
-        this.duracao = duracao;
+    
+    public Evento (Timestamp data, String descricao) {
+        this.data = data;
         this.descricao = descricao;
     }
-
-    public Timestamp getDataHora() {
-        return dataHora;
+    
+    
+    public int getEventoID() {
+        return eventoID;
     }
 
-    public void setDataHora(Timestamp dataHora) {
-        this.dataHora = dataHora;
+    public void setEventoID(int eventoID) {
+        this.eventoID = eventoID;
+    }
+    
+    
+    public Timestamp getData() {
+        return data;
     }
 
-    public Timestamp getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Timestamp duracao) {
-        this.duracao = duracao;
+    public void setData(Timestamp data) {
+        this.data = data;
     }
 
     public String getDescricao() {
@@ -39,23 +40,18 @@ public abstract class Evento {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
     @Override
     public String toString(){
         String str = "";
-
-        if (this.getDataHora() != null){
-            String[] d = this.getDataHora().toString().split("[^0-9]");
-            str = "Marcado para as: "+d[3]+" horas e "+d[4]+" minutos.\n";
-        }
-        if (this.getDuracao() != null){
-            String[] e = this.getDuracao().toString().split("[^0-9]");
-            str += "Duração: "+e[3]+" horas e "+e[4]+" minutos.\n";
+        
+        if (this.getData() != null){
+            String[] d = this.getData().toString().split("[^0-9]");        
         }
         if (this.getDescricao() != null){
             str += "Sobre: "+this.getDescricao();
         }
-
+        
         return str;
     }
 }

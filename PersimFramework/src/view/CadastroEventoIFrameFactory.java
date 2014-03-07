@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package model;
+package view;
 
 /**
  *
  * @author araujot
  */
-public interface EventoFactory {
-    
-    public Evento getEvento();
-
+public interface CadastroEventoIFrameFactory {
+    public CadastroEventoIFrame createCadastroEventoIFrame();
 }
