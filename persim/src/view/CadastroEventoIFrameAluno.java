@@ -11,6 +11,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Disciplina;
 import model.EventoAluno;
@@ -287,7 +289,11 @@ public class CadastroEventoIFrameAluno extends CadastroEventoIFrame {
                 disc.getEventos().add((EventoAvaliativoAluno)event);
             }
             else{
-                EventoControl.save(evento);
+                try {
+                    EventoControl.save(evento);
+                } catch (Exception ex) {
+                    Logger.getLogger(CadastroEventoIFrameAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             this.clearAllFields();
